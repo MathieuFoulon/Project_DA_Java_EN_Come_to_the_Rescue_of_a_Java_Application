@@ -27,11 +27,13 @@ public class AnalyticsCounter {
 			}
 			else if (line.contains("pupils")) {
 				pupilCount++;
-				System.out.println("number of pupils: " + pupilCount);
+				System.out.println("number of pupils dilatation: " + pupilCount);
 			}
 
 			line = reader.readLine();	// get another symptom
 		}
+
+		reader.close();
 		
 		// next generate output
 		FileWriter writer = new FileWriter ("result.out");
