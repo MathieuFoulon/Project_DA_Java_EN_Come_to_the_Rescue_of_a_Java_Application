@@ -1,17 +1,18 @@
 package com.hemebiotech.analytics;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
 
 public class WriteMappedSymptomsToFile implements ISymptomWriter {
-    private final String filepath;
+    private final File filepath;
 
     /**
-     * @param filepath a full or partial path to file to write symptoms in it
+     * @param filepath a full or partial path to file to write symptoms in it, has to be File object.
      */
-    public WriteMappedSymptomsToFile(String filepath) {
+    public WriteMappedSymptomsToFile(File filepath) {
         this.filepath = filepath;
     }
 
@@ -19,12 +20,10 @@ public class WriteMappedSymptomsToFile implements ISymptomWriter {
     public void writeSymptoms(Map<String, Integer> symptomsMapped) throws IOException {
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filepath));
         try {
-            // iterate map entries
+            // iterates map entries and formats "String:Integer"
             for (Map.Entry<String, Integer> entry :
                     symptomsMapped.entrySet()) {
-                // put key and value separated by a colon
                 bufferedWriter.write(entry.getKey() + ":" + entry.getValue());
-                // new line
                 bufferedWriter.newLine();
             }
             bufferedWriter.flush();
@@ -32,8 +31,8 @@ public class WriteMappedSymptomsToFile implements ISymptomWriter {
             e.printStackTrace();
         } finally {
             try {
-                // always close the writer
                 bufferedWriter.close();
+                System.out.println("File " + filepath +" wrote and closed");
             } catch (Exception e) {
                 e.printStackTrace();
             }
