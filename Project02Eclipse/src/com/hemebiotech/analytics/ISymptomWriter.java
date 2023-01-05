@@ -13,7 +13,7 @@ public interface ISymptomWriter {
     /**
      *
      * @param symptomsMapped the data to write, any Map object like "String,Int"
-     * @throws IOException Throws exception if file can't be created properly
+     * @throws IOException Throws exception if file can't be written properly
      */
     void writeSymptoms(Map<String, Integer> symptomsMapped) throws IOException;
 }
