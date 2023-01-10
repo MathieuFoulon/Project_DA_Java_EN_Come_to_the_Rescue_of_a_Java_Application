@@ -20,10 +20,10 @@ public class WriteMappedSymptomsToFile implements ISymptomWriter {
     public void writeSymptoms(Map<String, Integer> symptomsMapped) throws IOException {
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(filepath));
         try {
-            // iterates map entries and formats "String:Integer"
+            // iterates map entries and formats "String : Integer"
             for (Map.Entry<String, Integer> entry :
                     symptomsMapped.entrySet()) {
-                bufferedWriter.write(entry.getKey() + ":" + entry.getValue());
+                bufferedWriter.write(entry.getKey() + " : " + entry.getValue());
                 bufferedWriter.newLine();
             }
             bufferedWriter.flush();
@@ -37,7 +37,5 @@ public class WriteMappedSymptomsToFile implements ISymptomWriter {
                 e.printStackTrace();
             }
         }
-
     }
-
 }
